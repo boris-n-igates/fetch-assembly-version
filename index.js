@@ -20,12 +20,14 @@ try{
 
         console.log('---------- rootPath ' + rootPath + '/' + files[ind]);
 
-        const content = fs.readFileSync(rootPath + '/' + files[ind]);
-        const dom = new JSDOM(content.toString)
+        const buffer = fs.readFileSync(rootPath + '/' + files[ind]);
+        console.log('---------- buffer.toString' + buffer.toString);
+        
+        const dom = new JSDOM(buffer.toString)
         const xmlDoc = dom.window.document
 
        
-        console.log('---------- content.toString' + content.toString);
+        
      
         const propertyGroupList = xmlDoc.getElementsByTagName('PropertGroup')
         
