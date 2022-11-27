@@ -9,7 +9,7 @@ try{
     const rootPath = core.getInput("project-path", { required: true })
     const projectFilePath = getProjectPropertiesFile(rootPath)
 
-    console.log('projectFilePath ' + projectFilePath);
+    console.log('projectFilePath 22' + projectFilePath);
 
     if(projectFilePath !== ''){
         const promise = JSDOM.fromFile(projectFilePath)
@@ -36,7 +36,7 @@ try{
 
 function getProjectPropertiesFile(folder){
   
-    fs.readdir(folder, function(error, files){
+    fs.readdirSync(folder, function(error, files){
         if (error) {
             return console.log('Unable to scan directory: ' + err);
         } 
