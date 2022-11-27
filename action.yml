@@ -1,6 +1,11 @@
 name: 'Fetch Assembly version '
 description: 'Get assembly version from a dotnet project'
-
+inputs:
+  project-path:
+    description: 'path to search *.csproj file'
+    requires: true
+    type: string
+    
 outputs:
   assembly-version: 
     description: 'Project assembly version'
