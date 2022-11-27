@@ -5,9 +5,9 @@ const fs = require('fs');
 
 
 try{
-    console.log(`Hello jdhjkshdjkdhfkjhd`);
-    core.setOutput("assembly-version", "123456789aaaa");
+    
     const rootPath = core.getInput("project-path", { required: true })
+    console.log('---------- ' + rootPath);
     fs.readdir(rootPath, function(error, files){
         if (error) {
             return console.log('Unable to scan directory: ' + err);
