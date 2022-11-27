@@ -11,7 +11,7 @@ try{
 
     console.log('projectFilePath 22' + projectFilePath);
 
-    if(projectFilePath !== ''){
+    if(projectFilePath !== '' && projectFilePath !== undefined){
         const promise = JSDOM.fromFile(projectFilePath)
 
         promise.then((value) =>{
@@ -36,17 +36,16 @@ try{
 
 function getProjectPropertiesFile(folder){
   
-    fs.readdirSync(folder, function(error, files){
-        if (error) {
-            return console.log('Unable to scan directory: ' + err);
-        } 
-        let file = files.find((value, index) => {
-            console.log('value ' + value);
-            return path.extname(value) === '.csproj'
-        }) 
-        return path.join(folder, file)
-    })
-    return '';
+  
+    const files = fs.readdirSync(folder);
+
+    let file = files.find((value, index) => {
+        console.log('value ' + value);
+        return path.extname(value) === '.csproj'
+    }) 
+
+    return file
+
 }
 
 function setOutputs(version){
