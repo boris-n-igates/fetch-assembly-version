@@ -21,9 +21,9 @@ try{
         console.log('---------- rootPath ' + rootPath + '/' + files[ind]);
 
         const buffer = fs.readFileSync(rootPath + '/' + files[ind]);
-        console.log('---------- buffer.toString' + buffer.toString);
-        
-        const dom = new JSDOM(buffer.toString)
+        console.log('---------- buffer.toString' + buffer.length);
+    
+        const dom = new JSDOM(buffer)
         const xmlDoc = dom.window.document
 
        
