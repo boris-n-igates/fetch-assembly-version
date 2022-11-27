@@ -16,7 +16,7 @@ try{
             return value.includes('csproj');
         }) 
 
-        console.log('--------- ' + files[ind]);
+        console.log('---------- ' + files[ind]);
     })
 
 }catch (error){
