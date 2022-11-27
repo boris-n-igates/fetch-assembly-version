@@ -18,11 +18,13 @@ try{
             return path.extname(value) === '.csproj'
         }) 
 
+        console.log('---------- rootPath ' + rootPath + '/' + files[ind]);
+
         const content = fs.readFileSync(rootPath + '/' + files[ind]);
         const dom = new JSDOM(content.toString)
         const xmlDoc = dom.window.document
 
-        console.log('---------- rootPath + '/' + files[ind] ' + rootPath + '/' + files[ind]);
+       
         console.log('---------- content.toString' + content.toString);
      
         const propertyGroupList = xmlDoc.getElementsByTagName('PropertGroup')
