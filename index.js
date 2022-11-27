@@ -35,7 +35,7 @@ try{
             if (propertyGroupList.length > 0){
                 console.log('-propertyGroupList[0]  ' + propertyGroupList[0].innerHTML);
                 const versions = propertyGroupList[0].getElementsByTagName('AssemblyVersion')
-                if(version.length > 0){
+                if(versions.length > 0){
                     console.log('-versions[0].innerHTML ' + versions[0].innerHTML);
                     
                 }
