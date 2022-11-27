@@ -29,6 +29,8 @@ try{
             console.log('---------- promise.then --------');
             const xmlDoc = value.window.document
 
+            console.log('xmlDoc ' + value.window.document);
+
             const propertyGroupList = xmlDoc.getElementsByTagName('PropertGroup')
         
             if (propertyGroupList.length > 0){
