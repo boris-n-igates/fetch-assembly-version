@@ -1,66 +1,58 @@
 const core = require('@actions/core');
-const github = require('@actions/github');
 const path = require('path');
 const fs = require('fs');
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 
-
 try{
     
     const rootPath = core.getInput("project-path", { required: true })
-    console.log('---------- ' + rootPath);
-    fs.readdir(rootPath, function(error, files){
-        if (error) {
-            return console.log('Unable to scan directory: ' + err);
-        } 
-        let ind = files.findIndex((value, index) => {
-            return path.extname(value) === '.csproj'
-        }) 
+    const projectFilePath = getProjectPropertiesFile(rootPath)
 
-        console.log('---------- rootPath ' + rootPath + '/' + files[ind]);
-
-       // const buffer = fs.readFileSync(rootPath + '/' + files[ind]);
-      //  console.log('---------- buffer.toString' + buffer.length);
-    
-        const promise = JSDOM.fromFile(rootPath + '/' + files[ind])
+    if(projectFilePath !== ''){
+        const promise = JSDOM.fromFile(projectFilePath)
 
         promise.then((value) =>{
-            console.log('---------- promise.then --------');
             const xmlDoc = value.window.document
- 
             const propertyGroupList = xmlDoc.getElementsByTagName('PropertyGroup')
-        
             if (propertyGroupList.length > 0){
-                console.log('-propertyGroupList[0]  ' + propertyGroupList[0].innerHTML);
                 const versions = propertyGroupList[0].getElementsByTagName('AssemblyVersion');
                 if(versions.length > 0){
                     const version =  versions[0].innerHTML;
-                    let groups = version.split('.');
-                    core.setOutput('assembly-version', version)
-                    if(groups.length > 3){
-                        core.setOutput('major', groups[0]);
-                        core.setOutput('minor', groups[1]);
-                        core.setOutput('revision', groups[2]);
-                        core.setOutput('build', groups[3]);
-                    }
-                    console.log('-versions[0].innerHTML ' + versions[0].innerHTML);
+                    setOutputs(version);
                 }
             }
         })
         .catch((reason) => {
-            console.log('reason' + reason);
+            console.log('Failure reason' + reason);
         })
-      
- 
-         
-        
-     
-    
-
-      
-    })
+    }
 
 }catch (error){
     core.setFailed(error.message);
+}
+
+function getProjectPropertiesFile (folder){
+  
+    fs.readdir(rootPath, function(error, files){
+        if (error) {
+            return console.log('Unable to scan directory: ' + err);
+        } 
+        let file = files.find((value, index) => {
+            return path.extname(value) === '.csproj'
+        }) 
+        return path.join(folder, file)
+    })
+    return '';
+}
+
+function setOutputs(version){
+    let groups = version.split('.');
+    core.setOutput('assembly-version', version)
+    if(groups.length > 3){
+        core.setOutput('major', groups[0]);
+        core.setOutput('minor', groups[1]);
+        core.setOutput('revision', groups[2]);
+        core.setOutput('build', groups[3]);
+    }
 }
