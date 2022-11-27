@@ -2,6 +2,7 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 const path = require('path');
 const fs = require('fs');
+const jsdom = require("jsdom");
 
 
 try{
@@ -17,9 +18,10 @@ try{
         }) 
 
         const content = fs.readFileSync(rootPath + '/' + files[ind]);
-        let parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(content.toString, 'text/xml')
+        const dom = jsdom.JSDOM(content.toString)
+        const xmlDoc = dom.window.document
 
+     
         const propertyGroupList = xmlDoc.getElementsByTagName('PropertGroup')
         
         if (propertyGroupList.length > 0){
