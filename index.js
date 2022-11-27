@@ -9,8 +9,6 @@ try{
     const rootPath = core.getInput("project-path", { required: true })
     const projectFilePath = getProjectPropertiesFile(rootPath)
 
-    console.log('projectFilePath 22 ' + projectFilePath);
-
     if(projectFilePath !== '' && projectFilePath !== undefined){
         const promise = JSDOM.fromFile(projectFilePath)
 
@@ -38,7 +36,6 @@ function getProjectPropertiesFile(folder){
     const files = fs.readdirSync(folder);
 
     let file = files.find((value, index) => {
-        console.log('value ' + value);
         return path.extname(value) === '.csproj'
     }) 
 
