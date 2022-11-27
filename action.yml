@@ -1,0 +1,23 @@
+name: 'Fetch Assembly version '
+description: 'Get assembly version from a dotnet project'
+
+outputs:
+  assembly-version: 
+    description: 'Project assembly version'
+    value: ''
+  major:
+    description: 'Major identifier'
+    value: ''
+  minor:
+    description: 'Minor identifier'
+    value: ''
+  revision:
+    description: 'Revision identifier'
+    value: ''
+  build:
+    description: 'Build identifier'
+    value: ''
+
+runs:
+  using: 'node16'
+  main: 'index.js'

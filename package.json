@@ -1,0 +1,24 @@
+{
+  "name": "fetch-assembly-version",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/boris-n-igates/fetch-assembly-version.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/boris-n-igates/fetch-assembly-version/issues"
+  },
+  "homepage": "https://github.com/boris-n-igates/fetch-assembly-version#readme",
+  "dependencies": {
+    "@actions/core": "^1.10.0",
+    "@actions/github": "^5.1.1"
+  }
+}
