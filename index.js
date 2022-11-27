@@ -16,7 +16,7 @@ try{
             return path.extname(value) === '.csproj'
         }) 
 
-        const content = fs.readFileSync(files[ind]);
+        const content = fs.readFileSync(rootPath + '/' + files[ind]);
         let parser = new DOMParser();
         const xmlDoc = parser.parseFromString(content.toString, 'text/xml')
 
