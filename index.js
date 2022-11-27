@@ -13,7 +13,8 @@ try{
             return console.log('Unable to scan directory: ' + err);
         } 
         const ind = files.findIndex((value, index) => {
-            return value.includes('csproj');
+            console.log('---------- ' + value);
+            return path.extname(value) === '.csproj'
         }) 
 
         console.log('---------- ' + files[ind]);
