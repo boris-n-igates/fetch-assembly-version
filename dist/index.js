@@ -62,10 +62,12 @@ const core = __nccwpck_require__(105);
 const github = __nccwpck_require__(82);
 
 try{
+    console.log(`Hello jdhjkshdjkdhfkjhd`);
     core.setOutput("assembly-version", "123456789aaaa");
 }catch (error){
     core.setFailed(error.message);
 }
+
 })();
 
 module.exports = __webpack_exports__;
