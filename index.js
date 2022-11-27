@@ -20,25 +20,35 @@ try{
 
         console.log('---------- rootPath ' + rootPath + '/' + files[ind]);
 
-        const buffer = fs.readFileSync(rootPath + '/' + files[ind]);
-        console.log('---------- buffer.toString' + buffer.length);
+       // const buffer = fs.readFileSync(rootPath + '/' + files[ind]);
+      //  console.log('---------- buffer.toString' + buffer.length);
     
-        const dom = new JSDOM(buffer)
-        const xmlDoc = dom.window.document
+        const promise = JSDOM.fromFile(rootPath + '/' + files[ind])
 
-       
+        promise.then((value) =>{
+            console.log('---------- promise.then --------');
+            const xmlDoc = value.window.document
+
+            const propertyGroupList = xmlDoc.getElementsByTagName('PropertGroup')
+        
+            if (propertyGroupList.length > 0){
+                console.log('-propertyGroupList[0]  ' + propertyGroupList[0].innerHTML);
+                const versions = propertyGroupList[0].getElementsByTagName('AssemblyVersion')
+                if(version.length > 0){
+                    console.log('-versions[0].innerHTML ' + versions[0].innerHTML);
+                    
+                }
+            }
+        })
+        .catch((reason) => {
+            console.log('reason' + reason);
+        })
+      
+ 
+         
         
      
-        const propertyGroupList = xmlDoc.getElementsByTagName('PropertGroup')
-        
-        if (propertyGroupList.length > 0){
-            console.log('-propertyGroupList[0]  ' + propertyGroupList[0].innerHTML);
-            const versions = propertyGroupList[0].getElementsByTagName('AssemblyVersion')
-            if(version.length > 0){
-                console.log('-versions[0].innerHTML ' + versions[0].innerHTML);
-                
-            }
-        }
+    
 
       
     })
