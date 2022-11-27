@@ -12,12 +12,26 @@ try{
         if (error) {
             return console.log('Unable to scan directory: ' + err);
         } 
-        const ind = files.findIndex((value, index) => {
-            console.log('---------- ' + value);
+        let ind = files.findIndex((value, index) => {
             return path.extname(value) === '.csproj'
         }) 
 
-        console.log('---------- ' + files[ind]);
+        const content = fs.readFileSync(files[ind]);
+        let parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(content.toString, 'text/xml')
+
+        const propertyGroupList = xmlDoc.getElementsByTagName('PropertGroup')
+        
+        if (propertyGroupList.length > 0){
+            console.log('-propertyGroupList[0]  ' + propertyGroupList[0].innerHTML);
+            const versions = propertyGroupList[0].getElementsByTagName('AssemblyVersion')
+            if(version.length > 0){
+                console.log('-versions[0].innerHTML ' + versions[0].innerHTML);
+                
+            }
+        }
+
+      
     })
 
 }catch (error){
