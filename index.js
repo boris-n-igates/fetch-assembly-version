@@ -34,7 +34,7 @@ try{
 
 function getProjectPropertiesFile (folder){
   
-    fs.readdir(rootPath, function(error, files){
+    fs.readdir(folder, function(error, files){
         if (error) {
             return console.log('Unable to scan directory: ' + err);
         } 
