@@ -9,6 +9,8 @@ try{
     const rootPath = core.getInput("project-path", { required: true })
     const projectFilePath = getProjectPropertiesFile(rootPath)
 
+    console.log('projectFilePath ' + projectFilePath);
+
     if(projectFilePath !== ''){
         const promise = JSDOM.fromFile(projectFilePath)
 
@@ -32,7 +34,7 @@ try{
     core.setFailed(error.message);
 }
 
-function getProjectPropertiesFile (folder){
+function getProjectPropertiesFile(folder){
   
     fs.readdir(folder, function(error, files){
         if (error) {
