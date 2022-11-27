@@ -3,6 +3,7 @@ const github = require('@actions/github');
 const path = require('path');
 const fs = require('fs');
 const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
 
 
 try{
@@ -18,7 +19,7 @@ try{
         }) 
 
         const content = fs.readFileSync(rootPath + '/' + files[ind]);
-        const dom = jsdom.JSDOM(content.toString)
+        const dom = new JSDOM(content.toString)
         const xmlDoc = dom.window.document
 
      
