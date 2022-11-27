@@ -28,8 +28,7 @@ try{
         promise.then((value) =>{
             console.log('---------- promise.then --------');
             const xmlDoc = value.window.document
-
-            console.log('xmlDoc ' + value.window.document.);
+ 
 
             const propertyGroupList = xmlDoc.getElementsByTagName('PropertyGroup')
         
