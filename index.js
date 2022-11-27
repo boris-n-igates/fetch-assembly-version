@@ -9,7 +9,7 @@ try{
     core.setOutput("assembly-version", "123456789aaaa");
     const rootPath = core.getInput("project-path", { required: true })
     fs.readdir(rootPath, function(error, files){
-        if (err) {
+        if (error) {
             return console.log('Unable to scan directory: ' + err);
         } 
         const ind = files.findIndex((value, index) => {
