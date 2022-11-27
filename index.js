@@ -41,6 +41,7 @@ function getProjectPropertiesFile(folder){
             return console.log('Unable to scan directory: ' + err);
         } 
         let file = files.find((value, index) => {
+            console.log('value ' + value);
             return path.extname(value) === '.csproj'
         }) 
         return path.join(folder, file)
