@@ -18,7 +18,8 @@
   "homepage": "https://github.com/boris-n-igates/fetch-assembly-version#readme",
   "dependencies": {
     "@actions/core": "^1.10.0",
-    "@actions/github": "^5.1.1"
+    "@actions/github": "^5.1.1",
+    "jsdom": "^20.0.3"
   },
   "description": ""
 }
