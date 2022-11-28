@@ -43,10 +43,8 @@ function getProjectPropertiesFile(folder){
 }
 
 function setOutputs(version){
-    const reg = new RegExp('.', 'g');
+    const reg = new RegExp('\\.', 'g');
     const ver = version.replace(reg, '');
-    console.log('setOutputs ' + ver);
-    console.log('setOutputs version ' + version);
     core.setOutput('assembly-version', ver);
 
     let groups = version.split('.');
