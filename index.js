@@ -6,15 +6,15 @@ const { JSDOM } = jsdom;
 
 try{
     
-    const rootPath = core.getInput("project-path", { required: true })
-    const projectFilePath = getProjectPropertiesFile(rootPath)
+    const rootPath = core.getInput("project-path", { required: true });
+    const projectFilePath = getProjectPropertiesFile(rootPath);
 
     if(projectFilePath !== '' && projectFilePath !== undefined){
-        const promise = JSDOM.fromFile(projectFilePath)
+        const promise = JSDOM.fromFile(projectFilePath);
 
         promise.then((value) =>{
-            const xmlDoc = value.window.document
-            const propertyGroupList = xmlDoc.getElementsByTagName('PropertyGroup')
+            const xmlDoc = value.window.document;
+            const propertyGroupList = xmlDoc.getElementsByTagName('PropertyGroup');
             if (propertyGroupList.length > 0){
                 const versions = propertyGroupList[0].getElementsByTagName('AssemblyVersion');
                 if(versions.length > 0){
@@ -36,15 +36,17 @@ function getProjectPropertiesFile(folder){
     const files = fs.readdirSync(folder);
 
     let file = files.find((value, index) => {
-        return path.extname(value) === '.csproj'
+        return path.extname(value) === '.csproj';
     }) 
 
-    return path.join(folder,file)
+    return path.join(folder,file);
 }
 
 function setOutputs(version){
     let groups = version.split('.');
-    core.setOutput('assembly-version', version)
+    const reg =  RegExp('.', 'g');
+    version = version.replace(reg,'');
+    core.setOutput('assembly-version', version);
     if(groups.length > 3){
         core.setOutput('major', groups[0]);
         core.setOutput('minor', groups[1]);
